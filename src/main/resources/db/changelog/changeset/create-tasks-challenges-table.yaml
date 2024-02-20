@@ -1,0 +1,72 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: hahua
+      changes:
+        - createTable:
+            tableName: challenges
+            columns:
+              - column:
+                  name: challenge_id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: creation_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: exp_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+  - changeSet:
+      id: 2
+      author: hahua
+      changes:
+        - createTable:
+            tableName: tasks
+            columns:
+              - column:
+                  name: task_id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: exp_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: creation_date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_done
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: task_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: challenge_id
+                  type: INT
+                  constraints:
+                    references: Challenges(challenge_id)
+                    foreignKeyName: fk_challenge_id
